@@ -1,9 +1,8 @@
 type Params = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
-
 // (1) BẮT BUỘC PHẢI CÓ KHI DÙNG output: "export"
 export async function generateStaticParams() {
   // TODO: Fetch danh sách slug từ API hoặc file
@@ -18,18 +17,19 @@ export async function generateStaticParams() {
   }));
 }
 
-// (2) Metadata theo slug
 export async function generateMetadata({ params }: Params) {
+  const resolved = await params;
   return {
-    title: `Post: ${params.slug}`,
+    title: `Post: ${resolved.slug}`,
   };
 }
 
-// (3) Page component
-export default function Page({ params }: Params) {
+export default async function Page({ params }: Params) {
+  const resolved = await params;
+
   return (
     <>
-      <h1>Slug: {params.slug}</h1>
+      <h1>Slug: {resolved.slug}</h1>
     </>
   );
 }
