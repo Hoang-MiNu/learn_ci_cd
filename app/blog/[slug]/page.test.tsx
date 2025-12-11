@@ -8,3 +8,10 @@ test("App Router: Works with dynamic route segments", () => {
     screen.getByRole("heading", { level: 1, name: "Slug: Test" }),
   ).toBeDefined();
 });
+
+test("Hoàng MiNu should be in page", () => {
+  render(<Page params={{ slug: "Hoàng MiNu" }} />);
+  expect(
+    screen.findAllByText("Hoàng MiNu"),
+  ).toBeDefined();
+});
