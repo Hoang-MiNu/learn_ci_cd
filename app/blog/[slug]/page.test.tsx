@@ -12,6 +12,6 @@ test("App Router: Works with dynamic route segments", () => {
 test("Hoàng MiNu should be in page", () => {
   render(<Page params={{ slug: "Hoàng MiNu" }} />);
   expect(
-    screen.findAllByText("Hoàng MiNu"),
+    screen.findAllByText("Hoàng Minu"),
   ).toBeDefined();
 });
